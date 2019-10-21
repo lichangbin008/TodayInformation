@@ -1,5 +1,6 @@
 package com.lcb.todayinformation;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -76,6 +77,6 @@ public class SplashActivity extends BaseActivity {
 
     @OnClick(R.id.tv_count_down)
     public void onClick() {
-//        switch ()
+        startActivity(new Intent(SplashActivity.this,MainActivity.class));
     }
 }
