@@ -31,12 +31,18 @@ public class SplashActivity extends BaseActivity {
 //        setContentView(R.layout.activity_splash);
 
 
-        initView();
-
+//        initView();
+        initVideoView();
+        initListener();
+//        initTimer();
         initTimerPresenter();
     }
 
-    private void initView() {
+    private void initTimer() {
+
+    }
+
+    private void initVideoView() {
         vvSplashPlayer.setVideoURI(Uri.parse("android.resource://" + getPackageName() + File.separator + R.raw.splash));
         vvSplashPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
@@ -44,39 +50,44 @@ public class SplashActivity extends BaseActivity {
                 vvSplashPlayer.start();
             }
         });
+    }
+
+    private void initListener() {
         vvSplashPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 vvSplashPlayer.start();
             }
         });
-        countDownTimer = new CountDownTimer(5, new CountDownTimer.ICountDownTimeHandler() {
-            @Override
-            public void onTicker(int time) {
-                tvCountDown.setText(time + "秒");
-            }
-
-            @Override
-            public void onFinish() {
-                tvCountDown.setText("跳过");
-            }
-        });
-        countDownTimer.start();
     }
 
     private void initTimerPresenter() {
-        timerPresenter = new SplashTimerPresenter();
+        timerPresenter = new SplashTimerPresenter(this);
         timerPresenter.initTimer();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        countDownTimer.cancel();
+        timerPresenter.cancel();
     }
 
     @OnClick(R.id.tv_count_down)
     public void onClick() {
         startActivity(new Intent(SplashActivity.this,MainActivity.class));
+    }
+
+    public void setText(String s) {
+        tvCountDown.setText(s);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
