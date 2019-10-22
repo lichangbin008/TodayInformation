@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import com.lcb.todayinformation.mvp.ISplashActivityContract;
+
 import java.io.File;
 
 import butterknife.BindView;
@@ -15,31 +17,26 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 @ViewInject(mainlayout = R.layout.activity_splash)
-public class SplashActivity extends BaseActivity {
+public class SplashActivity extends BaseActivity implements ISplashActivityContract.IView {
 
     @BindView(R.id.vv_splash_player)
     SplashVideoView vvSplashPlayer;
     @BindView(R.id.tv_count_down)
     TextView tvCountDown;
 
-    private SplashTimerPresenter timerPresenter;
+    private ISplashActivityContract.IPresenter timerPresenter;
     private CountDownTimer countDownTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_splash);
-
-
-//        initView();
-        initVideoView();
-        initListener();
-//        initTimer();
-        initTimerPresenter();
     }
 
-    private void initTimer() {
-
+    @Override
+    public void afterBindView() {
+        initVideoView();
+        initListener();
+        initTimerPresenter();
     }
 
     private void initVideoView() {
@@ -66,19 +63,16 @@ public class SplashActivity extends BaseActivity {
         timerPresenter.initTimer();
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        timerPresenter.cancel();
-    }
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        timerPresenter.cancel();
+//    }
 
     @OnClick(R.id.tv_count_down)
     public void onClick() {
-        startActivity(new Intent(SplashActivity.this,MainActivity.class));
-    }
-
-    public void setText(String s) {
-        tvCountDown.setText(s);
+        startActivity(new Intent(SplashActivity.this, MainActivity.class));
+        finish();
     }
 
     @Override
@@ -89,5 +83,10 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void setTvTimer(String timer) {
+        tvCountDown.setText(timer);
     }
 }

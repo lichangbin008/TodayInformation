@@ -1,4 +1,4 @@
-package com.lcb.todayinformation;
+package com.lcb.todayinformation.mvp;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,7 +21,9 @@ public interface ILifeCircle {
 
     void onStop();
 
-    void destoryView();
+    void onDestroy();
+
+    void destroyView();
 
     void onDestroyView();
 
@@ -31,5 +33,5 @@ public interface ILifeCircle {
 
     void onActivityResult(int requestCode, int resultCode, Intent data);
 
-    void attchView();
+    void attachView(IMvpView iMvpView);
 }
