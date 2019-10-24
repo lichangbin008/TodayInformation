@@ -3,10 +3,10 @@ package com.lcb.todayinformation.main;
 import android.support.v4.app.Fragment;
 
 import com.lcb.todayinformation.R;
-import com.lcb.todayinformation.main.shanghai.BeijingFragment;
-import com.lcb.todayinformation.main.shanghai.HangzhouFragment;
+import com.lcb.todayinformation.main.beijing.BeijingFragment;
+import com.lcb.todayinformation.main.hangzhou.HangzhouFragment;
 import com.lcb.todayinformation.main.shanghai.ShanghaiFragment;
-import com.lcb.todayinformation.main.shanghai.ShenzhenFragment;
+import com.lcb.todayinformation.main.shenzhen.ShenzhenFragment;
 import com.lcb.todayinformation.mvp.base.BaseMvpPresenter;
 
 /**
@@ -108,6 +108,7 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContrac
         }
 
         fragments[index] = fragment;
+        addAndShowFragment(fragment);
     }
 
     /**

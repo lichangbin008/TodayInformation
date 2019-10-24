@@ -23,7 +23,7 @@ public abstract class BaseMvpPresenter<T extends IMvpView> extends LifeCircleMvp
     }
 
     @Override
-    public void onActivityCreate(Bundle savedInstanceState, Intent intent, Bundle getArguments) {
+    public void onActivityCreated(Bundle savedInstanceState, Intent intent, Bundle getArguments) {
 
     }
 

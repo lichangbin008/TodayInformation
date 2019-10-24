@@ -11,7 +11,7 @@ public interface ILifeCircle {
 
     void onCreate(Bundle savedInstanceState, Intent intent, Bundle getArguments);
 
-    void onActivityCreate(Bundle savedInstanceState, Intent intent, Bundle getArguments);
+    void onActivityCreated(Bundle savedInstanceState, Intent intent, Bundle getArguments);
 
     void onStart();
 

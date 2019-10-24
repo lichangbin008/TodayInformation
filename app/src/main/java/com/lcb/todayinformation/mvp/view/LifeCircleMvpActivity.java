@@ -35,7 +35,7 @@ public class LifeCircleMvpActivity extends AppCompatActivity implements IMvpView
         MvpControler mvpControler = this.getMvpControler();
         if (mvpControler != null) {
             mvpControler.onCreate(savedInstanceState, intent, null);
-            mvpControler.onActivityCreate(savedInstanceState, intent, null);
+            mvpControler.onActivityCreated(savedInstanceState, intent, null);
         }
     }
 

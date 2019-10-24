@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 
 import com.lcb.todayinformation.mvp.IMvpView;
 import com.lcb.todayinformation.mvp.MvpControler;
@@ -37,7 +35,7 @@ public class LifeCircleMvpFragment extends Fragment implements IMvpView {
         MvpControler mvpControler = this.getMvpControler();
         if (mvpControler != null) {
             mvpControler.onCreate(savedInstanceState, null, bundle);
-            mvpControler.onActivityCreate(savedInstanceState, null, bundle);
+            mvpControler.onActivityCreated(savedInstanceState, null, bundle);
         }
     }
 

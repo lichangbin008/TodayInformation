@@ -46,7 +46,7 @@ public class MvpControler implements ILifeCircle {
             if (getArguments == null) {
                 getArguments = new Bundle();
             }
-            presenter.onActivityCreate(savedInstanceState, intent, getArguments);
+            presenter.onActivityCreated(savedInstanceState, intent, getArguments);
         }
     }
 

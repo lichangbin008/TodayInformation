@@ -1,5 +1,6 @@
 package com.lcb.todayinformation.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -17,6 +18,14 @@ import butterknife.ButterKnife;
 
 public abstract class BaseFragment extends LifeCircleMvpFragment {
 
+    private Context context;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.context = context;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -25,9 +34,8 @@ public abstract class BaseFragment extends LifeCircleMvpFragment {
         if (annotation != null) {
             int mainlayoutid = annotation.mainlayout();
             if (mainlayoutid > 0) {
-                setContentView(mainlayoutid);
-                initFragmentView(mainlayoutid);
-                bindView();
+                view = initFragmentView(inflater, mainlayoutid);
+                bindView(view);
                 afterBindView();
             } else {
                 throw new RuntimeException("mainlayoutid < 0");
@@ -44,8 +52,8 @@ public abstract class BaseFragment extends LifeCircleMvpFragment {
      * @param mainlayoutid 布局
      * @return 视图
      */
-    private View initFragmentView(int mainlayoutid) {
-        return LayoutInflater.from();
+    private View initFragmentView(LayoutInflater inflater, int mainlayoutid) {
+        return inflater.inflate(mainlayoutid, null);
     }
 
     // 模板方法 设计模式
@@ -54,7 +62,7 @@ public abstract class BaseFragment extends LifeCircleMvpFragment {
     /**
      * View 的依赖注入绑定
      */
-    private void bindView() {
-        ButterKnife.bind(this);
+    private void bindView(View view) {
+        ButterKnife.bind(this, view);
     }
 }

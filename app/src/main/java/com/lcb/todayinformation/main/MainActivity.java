@@ -43,11 +43,6 @@ public class MainActivity extends BaseActivity implements IMainActivityContract.
     IMainActivityContract.IPresenter mainPresenter = new MainActivityPresenter(this);
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public void afterBindView() {
         initHomeFragment();
         channgeAnime(rgMainBottom, rgMainTop);
@@ -100,7 +95,7 @@ public class MainActivity extends BaseActivity implements IMainActivityContract.
     }
 
     @Override
-    public void hideFragment(Fragment fragment ) {
+    public void hideFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction().hide(fragment).commit();
     }
 }
