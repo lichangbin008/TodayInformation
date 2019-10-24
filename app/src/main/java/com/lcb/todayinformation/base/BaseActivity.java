@@ -1,11 +1,8 @@
-package com.lcb.todayinformation;
+package com.lcb.todayinformation.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 
-import com.lcb.todayinformation.mvp.ILifeCircle;
-import com.lcb.todayinformation.mvp.base.BaseMvpPresenter;
 import com.lcb.todayinformation.mvp.view.LifeCircleMvpActivity;
 
 import butterknife.ButterKnife;

@@ -1,19 +1,19 @@
-package com.lcb.todayinformation;
+package com.lcb.todayinformation.splash;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
-import android.widget.VideoView;
 
-import com.lcb.todayinformation.mvp.ISplashActivityContract;
+import com.lcb.todayinformation.R;
+import com.lcb.todayinformation.base.BaseActivity;
+import com.lcb.todayinformation.base.ViewInject;
+import com.lcb.todayinformation.main.MainActivity;
 
 import java.io.File;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 @ViewInject(mainlayout = R.layout.activity_splash)

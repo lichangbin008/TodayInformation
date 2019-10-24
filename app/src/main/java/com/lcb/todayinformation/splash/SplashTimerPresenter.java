@@ -1,7 +1,5 @@
-package com.lcb.todayinformation;
+package com.lcb.todayinformation.splash;
 
-import com.lcb.todayinformation.mvp.IMvpView;
-import com.lcb.todayinformation.mvp.ISplashActivityContract;
 import com.lcb.todayinformation.mvp.base.BaseMvpPresenter;
 
 /**

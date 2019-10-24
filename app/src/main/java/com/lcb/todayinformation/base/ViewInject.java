@@ -1,4 +1,4 @@
-package com.lcb.todayinformation;
+package com.lcb.todayinformation.base;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;

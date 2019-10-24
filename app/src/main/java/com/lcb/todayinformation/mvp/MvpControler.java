@@ -36,7 +36,7 @@ public class MvpControler implements ILifeCircle {
     }
 
     @Override
-    public void onActivityCreate(Bundle savedInstanceState, Intent intent, Bundle getArguments) {
+    public void onActivityCreated(Bundle savedInstanceState, Intent intent, Bundle getArguments) {
         Iterator<ILifeCircle> iterator = this.lifeCircles.iterator();
         while (iterator.hasNext()) {
             ILifeCircle presenter = iterator.next();

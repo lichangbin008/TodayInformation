@@ -1,4 +1,4 @@
-package com.lcb.todayinformation;
+package com.lcb.todayinformation.splash;
 
 import android.os.Handler;
 import android.widget.TextView;

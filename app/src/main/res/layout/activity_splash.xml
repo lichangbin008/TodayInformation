@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.lcb.todayinformation.SplashActivity">
+    tools:context="com.lcb.todayinformation.splash.SplashActivity">
 
 
-    <com.lcb.todayinformation.SplashVideoView
+    <com.lcb.todayinformation.splash.SplashVideoView
         android:id="@+id/vv_splash_player"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
