@@ -10,7 +10,7 @@ import com.lcb.todayinformation.base.ViewInject;
  * Created by ${lichangbin} on 2019/10/23.
  */
 
-@ViewInject(mainlayout = R.layout.fragment_shanghai)
+@ViewInject(mainlayoutid = R.layout.fragment_shanghai)
 public class ShanghaiFragment extends BaseFragment {
 
     @Override

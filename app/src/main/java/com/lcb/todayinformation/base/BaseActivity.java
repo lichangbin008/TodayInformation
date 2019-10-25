@@ -18,7 +18,7 @@ public abstract class BaseActivity extends LifeCircleMvpActivity {
         super.onCreate(savedInstanceState);
         ViewInject annotation = this.getClass().getAnnotation(ViewInject.class);
         if (annotation != null) {
-            int mainlayoutid = annotation.mainlayout();
+            int mainlayoutid = annotation.mainlayoutid();
             if (mainlayoutid > 0) {
                 setContentView(mainlayoutid);
                 bindView();

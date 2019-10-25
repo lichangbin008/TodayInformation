@@ -21,6 +21,10 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContrac
 
     private Fragment[] fragments = new Fragment[4];
 
+    private int topPosition;
+
+    private int bottomPosition;
+
     private int currentCheckId;
 
     public MainActivityPresenter(IMainActivityContract.IView view) {
@@ -38,28 +42,44 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContrac
         replaceFragment(currentFragmentIndex);
     }
 
-    /**
-     * 切换Fragment
-     *
-     * @param index 索引
-     */
-    private void replaceFragment(int index) {
+    @Override
+    public int getCurrentCheckIndex() {
+        return 0;
+    }
+
+    @Override
+    public void replaceFragment(int fragmentIndex) {
         for (int i = 0; i < fragments.length; i++) {
-            if (index != i) {
+            if (fragmentIndex != i) {
                 if (fragments[i] != null) {
                     hideFragment(fragments[i]);
                 }
             }
         }
 
-        Fragment fragment = fragments[index];
+        Fragment fragment = fragments[fragmentIndex];
         if (fragment != null) {
             addAndShowFragment(fragment);
-            setCurChecked(index);
+            setCurChecked(fragmentIndex);
         } else {
-            newCurrentFragment(index);
-            setCurChecked(index);
+            newCurrentFragment(fragmentIndex);
+            setCurChecked(fragmentIndex);
         }
+    }
+
+    @Override
+    public int getTopPosition() {
+        return topPosition;
+    }
+
+    @Override
+    public int getBottomPosition() {
+        return bottomPosition;
+    }
+
+    @Override
+    public int getCurrentCheckId() {
+        return currentCheckId;
     }
 
     /**
@@ -72,15 +92,19 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContrac
         switch (currentFragmentIndex) {
             case 0:
                 currentCheckId = R.id.rb_main_shanghai;
+                topPosition = 0;
                 break;
             case 1:
                 currentCheckId = R.id.rb_main_hangzhou;
+                topPosition = 1;
                 break;
             case 2:
                 currentCheckId = R.id.rb_main_beijing;
+                bottomPosition = 2;
                 break;
             case 3:
                 currentCheckId = R.id.rb_main_shenzhen;
+                bottomPosition = 3;
                 break;
         }
     }

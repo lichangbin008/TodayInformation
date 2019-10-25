@@ -32,7 +32,7 @@ public abstract class BaseFragment extends LifeCircleMvpFragment {
         View view = null;
         ViewInject annotation = this.getClass().getAnnotation(ViewInject.class);
         if (annotation != null) {
-            int mainlayoutid = annotation.mainlayout();
+            int mainlayoutid = annotation.mainlayoutid();
             if (mainlayoutid > 0) {
                 view = initFragmentView(inflater, mainlayoutid);
                 bindView(view);

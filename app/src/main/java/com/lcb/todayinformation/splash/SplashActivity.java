@@ -16,7 +16,7 @@ import java.io.File;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-@ViewInject(mainlayout = R.layout.activity_splash)
+@ViewInject(mainlayoutid = R.layout.activity_splash)
 public class SplashActivity extends BaseActivity implements ISplashActivityContract.IView {
 
     @BindView(R.id.vv_splash_player)
