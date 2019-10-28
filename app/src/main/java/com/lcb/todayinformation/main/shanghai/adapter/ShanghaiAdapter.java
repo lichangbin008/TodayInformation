@@ -1,16 +1,20 @@
 package com.lcb.todayinformation.main.shanghai.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lcb.todayinformation.R;
 import com.lcb.todayinformation.main.shanghai.dto.ShanghaiBean;
+import com.lcb.todayinformation.main.shanghai.view.ShanghaiDetailActivity;
 
 import java.util.ArrayList;
 
@@ -20,19 +24,27 @@ import java.util.ArrayList;
 
 public class ShanghaiAdapter extends RecyclerView.Adapter {
 
+    private boolean isHor;
     private ArrayList<ShanghaiBean> data;
 
-    private Context context;
+    private Activity context;
 
-    public ShanghaiAdapter(Context context, ArrayList<ShanghaiBean> data) {
+    private RecyclerView.RecycledViewPool recycledViewPool;
+
+    public ShanghaiAdapter(Activity context, ArrayList<ShanghaiBean> data, boolean isHor) {
         this.context = context;
         this.data = data;
+        this.isHor = isHor;
+        recycledViewPool = new RecyclerView.RecycledViewPool();
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // 创建View，然后进行缓存
         if (viewType == ShanghaiBean.IShanghaiItemType.VERTICAL) {
+            if (isHor){
+                Log.e("onCreateViewHolder", "viewType VERTICAL");
+            }
             View view = LayoutInflater.from(parent.getContext()).inflate(
                     R.layout.item_fragment_shanghai, parent, false);
             ShanghaiViewHolder viewHolder = new ShanghaiViewHolder(view);
@@ -55,11 +67,10 @@ public class ShanghaiAdapter extends RecyclerView.Adapter {
             ((ShanghaiViewHolder) holder).tvContent.setText(shanghaiBean.getDec());
             ((ShanghaiViewHolder) holder).ivShanghai.setVisibility(
                     shanghaiBean.isShowImg() ? View.VISIBLE : View.GONE);
+            ((ShanghaiViewHolder) holder).itemView.setTag(position);
         } else if (holder instanceof ShanghaiViewHolderRv) {
-            ((ShanghaiViewHolderRv) holder).recyclerView.setLayoutManager(
-                    new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
             ((ShanghaiViewHolderRv) holder).recyclerView.setAdapter(
-                    new ShanghaiAdapter(context, shanghaiBean.getData()));
+                    new ShanghaiAdapter(context, shanghaiBean.getData(), true));
         }
     }
 
@@ -83,6 +94,15 @@ public class ShanghaiAdapter extends RecyclerView.Adapter {
             super(itemView);
             tvContent = itemView.findViewById(R.id.tv_shanghai_content);
             ivShanghai = itemView.findViewById(R.id.iv_item_shanghai);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                    int position = (int) v.getTag();
+//                    Toast.makeText(context, "我被点击" + position, Toast.LENGTH_SHORT).show();
+                    ShanghaiDetailActivity.start_5_0(context,ivShanghai);
+                }
+            });
         }
     }
 
@@ -93,6 +113,11 @@ public class ShanghaiAdapter extends RecyclerView.Adapter {
         public ShanghaiViewHolderRv(View itemView) {
             super(itemView);
             recyclerView = itemView.findViewById(R.id.rv_item_shanghai);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(
+                    context, LinearLayoutManager.HORIZONTAL, false);
+            linearLayoutManager.setRecycleChildrenOnDetach(true);
+            recyclerView.setLayoutManager(linearLayoutManager);
+            recyclerView.setRecycledViewPool(recycledViewPool);
         }
     }
 

@@ -47,7 +47,8 @@ public class ShanghaiFragment extends BaseFragment {
      */
     private void initRecyclerView() {
         rvShanghai.setLayoutManager(new LinearLayoutManager(context));
-        ShanghaiAdapter shanghaiAdapter = new ShanghaiAdapter(context, ShanghaiDataManager.getData());
+        ShanghaiAdapter shanghaiAdapter = new ShanghaiAdapter(
+                getActivity(), ShanghaiDataManager.getData(), false);
         rvShanghai.setAdapter(shanghaiAdapter);
     }
 
