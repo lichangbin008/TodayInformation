@@ -7,6 +7,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
 import android.support.v4.view.ViewCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -14,7 +15,18 @@ import com.lcb.todayinformation.R;
 import com.lcb.todayinformation.base.BaseActivity;
 import com.lcb.todayinformation.base.ViewInject;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
+
 import butterknife.BindView;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * Created by ${lichangbin} on 2019/10/28.
@@ -31,6 +43,57 @@ public class ShanghaiDetailActivity extends BaseActivity {
     @Override
     public void afterBindView() {
         initAnima();
+//        initGetNetData();
+        initPostNetData();
+    }
+
+    /**
+     * 发送网络请求Post
+     */
+    private void initPostNetData() {
+        OkHttpClient client = new OkHttpClient(); // okhttp 配置一些默认
+        FormBody.Builder builder = new FormBody.Builder();
+        builder.add("key", "77bab10f51911504dc087d876b620d7f");
+        Request request = new Request.Builder().url("http://apis.juhe.cn/lottery/types").post(builder.build()).build(); // 建造者设计模式
+        Call call = client.newCall(request);
+        call.enqueue(new Callback() { // 异步请求
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                Log.e("initPostNetData", "onFailure" + e);
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                Log.e("initPostNetData", "onResponse" + response.body().string());
+            }
+        });
+    }
+
+    /**
+     * 发送网络请求Get
+     */
+    private void initGetNetData() {
+        OkHttpClient client = new OkHttpClient(); // okhttp 配置一些默认
+
+        HttpUrl.Builder builder = HttpUrl.parse("http://v.juhe.cn/joke/content/list.php").newBuilder();
+        builder.addQueryParameter("sort", "desc");
+        builder.addQueryParameter("page", "1");
+        builder.addQueryParameter("pagesize", "2");
+        builder.addQueryParameter("time", "" + System.currentTimeMillis() / 1000);
+        builder.addQueryParameter("key", "51280ee59e42e870feb0012ea7fc5628");
+        Request request = new Request.Builder().url(builder.build()).get().build(); // 建造者设计模式
+        Call call = client.newCall(request);
+        call.enqueue(new Callback() { // 异步请求
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                Log.e("initGetNetData", "onFailure" + e);
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                Log.e("initGetNetData", "onResponse" + response.body().string());
+            }
+        });
     }
 
     private void initAnima() {
