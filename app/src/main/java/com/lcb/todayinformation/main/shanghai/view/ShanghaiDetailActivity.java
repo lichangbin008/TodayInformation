@@ -15,7 +15,6 @@ import com.lcb.todayinformation.R;
 import com.lcb.todayinformation.base.BaseActivity;
 import com.lcb.todayinformation.base.ViewInject;
 
-import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 
@@ -58,12 +57,12 @@ public class ShanghaiDetailActivity extends BaseActivity {
         Call call = client.newCall(request);
         call.enqueue(new Callback() { // 异步请求
             @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+            public void onFailure(Call call, IOException e) {
                 Log.e("initPostNetData", "onFailure" + e);
             }
 
             @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+            public void onResponse(Call call, Response response) throws IOException {
                 Log.e("initPostNetData", "onResponse" + response.body().string());
             }
         });
@@ -85,12 +84,12 @@ public class ShanghaiDetailActivity extends BaseActivity {
         Call call = client.newCall(request);
         call.enqueue(new Callback() { // 异步请求
             @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+            public void onFailure(Call call, IOException e) {
                 Log.e("initGetNetData", "onFailure" + e);
             }
 
             @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+            public void onResponse(Call call, Response response) throws IOException {
                 Log.e("initGetNetData", "onResponse" + response.body().string());
             }
         });
