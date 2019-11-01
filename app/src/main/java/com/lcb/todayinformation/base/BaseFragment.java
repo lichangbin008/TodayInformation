@@ -7,8 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.lcb.todayinformation.mvp.view.LifeCircleMvpActivity;
-import com.lcb.todayinformation.mvp.view.LifeCircleMvpFragment;
+import com.mvp.mvp.view.LifeCircleMvpActivity;
+import com.mvp.mvp.view.LifeCircleMvpFragment;
 
 import butterknife.ButterKnife;
 

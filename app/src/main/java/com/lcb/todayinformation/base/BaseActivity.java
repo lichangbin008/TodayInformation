@@ -3,7 +3,7 @@ package com.lcb.todayinformation.base;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.lcb.todayinformation.mvp.view.LifeCircleMvpActivity;
+import com.mvp.mvp.view.LifeCircleMvpActivity;
 
 import butterknife.ButterKnife;
 

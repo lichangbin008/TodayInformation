@@ -7,7 +7,7 @@ import com.lcb.todayinformation.main.beijing.BeijingFragment;
 import com.lcb.todayinformation.main.hangzhou.HangzhouFragment;
 import com.lcb.todayinformation.main.shanghai.ShanghaiFragment;
 import com.lcb.todayinformation.main.shenzhen.ShenzhenFragment;
-import com.lcb.todayinformation.mvp.base.BaseMvpPresenter;
+import com.mvp.mvp.base.BaseMvpPresenter;
 
 /**
  * Created by ${lichangbin} on 2019/10/23.

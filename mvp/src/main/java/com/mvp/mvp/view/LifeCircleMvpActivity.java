@@ -1,13 +1,11 @@
-package com.lcb.todayinformation.mvp.view;
+package com.mvp.mvp.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.lcb.todayinformation.mvp.IMvpView;
-import com.lcb.todayinformation.mvp.MvpControler;
+import com.mvp.mvp.IMvpView;
+import com.mvp.mvp.MvpControler;
 
 /**
  * Created by ${lichangbin} on 2019/10/22.

@@ -1,10 +1,10 @@
-package com.lcb.todayinformation.mvp.base;
+package com.mvp.mvp.base;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.lcb.todayinformation.mvp.IMvpView;
-import com.lcb.todayinformation.mvp.presenter.LifeCircleMvpPresenter;
+import com.mvp.mvp.IMvpView;
+import com.mvp.mvp.presenter.LifeCircleMvpPresenter;
 
 /**
  * Created by ${lichangbin} on 2019/10/22.

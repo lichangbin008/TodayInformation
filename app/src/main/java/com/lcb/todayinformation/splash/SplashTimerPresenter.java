@@ -1,6 +1,6 @@
 package com.lcb.todayinformation.splash;
 
-import com.lcb.todayinformation.mvp.base.BaseMvpPresenter;
+import com.mvp.mvp.base.BaseMvpPresenter;
 
 /**
  * Created by ${lichangbin} on 2019/10/18.

@@ -2,9 +2,9 @@ package com.lcb.todayinformation.main;
 
 import android.support.v4.app.Fragment;
 
-import com.lcb.todayinformation.mvp.ILifeCircle;
-import com.lcb.todayinformation.mvp.IMvpView;
-import com.lcb.todayinformation.mvp.MvpControler;
+import com.mvp.mvp.ILifeCircle;
+import com.mvp.mvp.IMvpView;
+import com.mvp.mvp.MvpControler;
 
 /**
  * Created by ${lichangbin} on 2019/10/22.
