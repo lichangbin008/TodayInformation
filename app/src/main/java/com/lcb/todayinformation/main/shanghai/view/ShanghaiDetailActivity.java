@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import com.lcb.todayinformation.R;
 import com.lcb.todayinformation.base.BaseActivity;
 import com.lcb.todayinformation.base.ViewInject;
+import com.lcb.todayinformation.main.shanghai.module.ShanghaiDetailHttpTask;
 
 
 import java.io.IOException;
@@ -43,7 +44,7 @@ public class ShanghaiDetailActivity extends BaseActivity {
     public void afterBindView() {
         initAnima();
 //        initGetNetData();
-        initPostNetData();
+//        initPostNetData();
     }
 
     /**
@@ -72,27 +73,35 @@ public class ShanghaiDetailActivity extends BaseActivity {
      * 发送网络请求Get
      */
     private void initGetNetData() {
-        OkHttpClient client = new OkHttpClient(); // okhttp 配置一些默认
 
-        HttpUrl.Builder builder = HttpUrl.parse("http://v.juhe.cn/joke/content/list.php").newBuilder();
-        builder.addQueryParameter("sort", "desc");
-        builder.addQueryParameter("page", "1");
-        builder.addQueryParameter("pagesize", "2");
-        builder.addQueryParameter("time", "" + System.currentTimeMillis() / 1000);
-        builder.addQueryParameter("key", "51280ee59e42e870feb0012ea7fc5628");
-        Request request = new Request.Builder().url(builder.build()).get().build(); // 建造者设计模式
-        Call call = client.newCall(request);
-        call.enqueue(new Callback() { // 异步请求
-            @Override
-            public void onFailure(Call call, IOException e) {
-                Log.e("initGetNetData", "onFailure" + e);
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                Log.e("initGetNetData", "onResponse" + response.body().string());
-            }
-        });
+        Object desc = new ShanghaiDetailHttpTask().getXiaoHuaList("desc","1","1");
+//        // 1.可以隔离
+//        OkHttpClient client = new OkHttpClient(); // okhttp 配置一些默认
+//
+//        // 2.构建请求，url和参数
+//        HttpUrl.Builder builder = HttpUrl.parse("http://v.juhe.cn/joke/content/list.php").newBuilder();
+//        builder.addQueryParameter("sort", "desc");
+//        builder.addQueryParameter("page", "1");
+//        builder.addQueryParameter("pagesize", "2");
+//        builder.addQueryParameter("time", "" + System.currentTimeMillis() / 1000);
+//        builder.addQueryParameter("key", "51280ee59e42e870feb0012ea7fc5628");
+//
+//        // 3.构建Request
+//        Request request = new Request.Builder().url(builder.build()).get().build(); // 建造者设计模式
+//        // 4.构建Call
+//        Call call = client.newCall(request);
+//        // 5.网络请求
+//        call.enqueue(new Callback() { // 异步请求
+//            @Override
+//            public void onFailure(Call call, IOException e) {
+//                Log.e("initGetNetData", "onFailure" + e);
+//            }
+//
+//            @Override
+//            public void onResponse(Call call, Response response) throws IOException {
+//                Log.e("initGetNetData", "onResponse" + response.body().string());
+//            }
+//        });
     }
 
     private void initAnima() {
