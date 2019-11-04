@@ -30,7 +30,7 @@ public class ShanghaiDetailPresenter extends BasePresenter<IShanghaiDetailContra
             }
 
             @Override
-            public void onSuccess(Object o) {
+            public void onSuccess(Object o) { // 在主线程
                 //获取网络结果
             }
 
