@@ -14,7 +14,10 @@ import android.widget.ImageView;
 import com.lcb.todayinformation.R;
 import com.lcb.todayinformation.base.BaseActivity;
 import com.lcb.todayinformation.base.ViewInject;
+import com.lcb.todayinformation.main.shanghai.lf.IShanghaiDetailContract;
+import com.lcb.todayinformation.main.shanghai.manager.GetXiaoHuaTask;
 import com.lcb.todayinformation.main.shanghai.module.ShanghaiDetailHttpTask;
+import com.lcb.todayinformation.main.shanghai.presenter.ShanghaiDetailPresenter;
 
 
 import java.io.IOException;
@@ -33,7 +36,9 @@ import okhttp3.Response;
  */
 
 @ViewInject(mainlayoutid = R.layout.activity_shanghai_detail)
-public class ShanghaiDetailActivity extends BaseActivity {
+public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDetailContract.IView{
+
+    IShanghaiDetailContract.IPresenter presenter = new ShanghaiDetailPresenter(this);
 
     private static String activityOptionsCompat = "ShanghaiDetailActivity";
 
@@ -43,7 +48,7 @@ public class ShanghaiDetailActivity extends BaseActivity {
     @Override
     public void afterBindView() {
         initAnima();
-//        initGetNetData();
+        initGetNetData();
 //        initPostNetData();
     }
 
@@ -74,7 +79,15 @@ public class ShanghaiDetailActivity extends BaseActivity {
      */
     private void initGetNetData() {
 
-        Object desc = new ShanghaiDetailHttpTask().getXiaoHuaList("desc","1","1");
+        presenter.getNetData();
+//        GetXiaoHuaTask task = new GetXiaoHuaTask();
+//        task.execute("desc", "1", "1");
+
+//        Object desc = new ShanghaiDetailHttpTask().getXiaoHuaList("desc", "1", "1");
+//        if (desc instanceof Response) {
+//            Response response = (Response) desc;
+//            Log.e("initGetNetData", "response:" + response.body().toString());
+//        }
 //        // 1.可以隔离
 //        OkHttpClient client = new OkHttpClient(); // okhttp 配置一些默认
 //

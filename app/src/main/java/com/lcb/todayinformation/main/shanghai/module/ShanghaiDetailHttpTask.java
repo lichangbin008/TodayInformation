@@ -1,6 +1,6 @@
 package com.lcb.todayinformation.main.shanghai.module;
 
-import com.lcb.http.LfHttpTask;
+import com.lcb.http.LfHttpServer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,7 +9,7 @@ import java.util.Map;
  * Created by ${lichangbin} on 2019/11/1.
  */
 
-public class ShanghaiDetailHttpTask extends LfHttpTask {
+public class ShanghaiDetailHttpTask extends LfHttpServer {
 
     public Object getXiaoHuaList(String sort, String page, String pagesize) {
         Map<String, Object> params = new HashMap<>();

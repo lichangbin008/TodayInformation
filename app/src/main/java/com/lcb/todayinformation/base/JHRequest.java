@@ -14,6 +14,7 @@ public class JHRequest extends LfRequest{
         JHRequest request = new JHRequest();
         request.host = IHostManager.jhHost;
         request.requestMethod = requestMethod;
+        request.path = path;
         return request;
     }
 }
