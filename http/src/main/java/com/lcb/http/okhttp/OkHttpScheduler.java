@@ -4,6 +4,7 @@ import com.lcb.http.IRequest;
 import com.lcb.http.annotation.RequestMothod;
 import com.lcb.http.request.HttpScheduler;
 import com.lcb.http.request.call.ICall;
+import com.lcb.http.result.IResult;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -52,10 +53,10 @@ public class OkHttpScheduler extends HttpScheduler {
         return okHttpCall;
     }
 
-    @Override
-    public Object execute(ICall call) {
-        return call.execute();
-    }
+//    @Override
+//    public IResult execute(ICall call) {
+//        return call.execute();
+//    }
 
 
     private OkHttpClient getClient() {

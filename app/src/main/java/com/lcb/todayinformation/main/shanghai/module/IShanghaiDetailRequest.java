@@ -3,6 +3,7 @@ package com.lcb.todayinformation.main.shanghai.module;
 import com.lcb.http.IRequest;
 import com.lcb.http.annotation.RequestMothod;
 import com.lcb.todayinformation.base.JHRequest;
+import com.lcb.todayinformation.main.shanghai.dto.ShanghaiDetailBean;
 
 /**
  * Created by ${lichangbin} on 2019/11/1.
@@ -10,5 +11,5 @@ import com.lcb.todayinformation.base.JHRequest;
 
 public interface IShanghaiDetailRequest {
 
-    IRequest xiaoHuaRequest = JHRequest.sendHttp("/joke/content/list.php", RequestMothod.Get);
+    IRequest xiaoHuaRequest = JHRequest.sendHttp("/joke/content/list.php", RequestMothod.Get, ShanghaiDetailBean.class);
 }

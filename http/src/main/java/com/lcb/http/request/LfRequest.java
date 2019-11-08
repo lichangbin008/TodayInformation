@@ -2,7 +2,9 @@ package com.lcb.http.request;
 
 import com.lcb.http.IRequest;
 import com.lcb.http.annotation.RequestMothod;
+import com.lcb.http.parser.IParser;
 
+import java.lang.reflect.Type;
 import java.util.Map;
 
 /**
@@ -19,6 +21,10 @@ public class LfRequest implements IRequest {
     private Map<String, Object> params;
 
     protected String path;
+
+    protected Type type;
+
+    protected IParser resultParser;
 
     @Override
     public void setParams(Map<String, Object> params) {
@@ -43,5 +49,15 @@ public class LfRequest implements IRequest {
     @Override
     public String getPath() {
         return path;
+    }
+
+    @Override
+    public IParser getParser() {
+        return resultParser;
+    }
+
+    @Override
+    public Type getType() {
+        return type;
     }
 }

@@ -78,8 +78,13 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
      * 发送网络请求Get
      */
     private void initGetNetData() {
+        ivShanghaiDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.getNetData();
+            }
+        });
 
-        presenter.getNetData();
 //        GetXiaoHuaTask task = new GetXiaoHuaTask();
 //        task.execute("desc", "1", "1");
 

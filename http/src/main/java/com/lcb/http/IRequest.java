@@ -1,7 +1,9 @@
 package com.lcb.http;
 
+import com.lcb.http.parser.IParser;
 import com.lcb.http.request.IHost;
 
+import java.lang.reflect.Type;
 import java.util.Map;
 
 /**
@@ -19,5 +21,9 @@ public interface IRequest {
     IHost getHost();
 
     String getPath();
+
+    IParser getParser();
+
+    Type getType();
 
 }

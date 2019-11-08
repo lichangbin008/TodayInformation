@@ -3,6 +3,7 @@ package com.lcb.http;
 import com.lcb.http.okhttp.OkHttpScheduler;
 import com.lcb.http.request.HttpScheduler;
 import com.lcb.http.request.call.ICall;
+import com.lcb.http.result.IResult;
 
 import java.util.Map;
 
@@ -26,13 +27,12 @@ public class HttpHelper {
     }
 
     // TODO: 2019/11/1  带重构
-    protected static Object execute(IRequest request, Map<String, Object> params) {
+    protected static <T> IResult<T> execute(IRequest request, Map<String, Object> params) {
 
         request.setParams(params);
 
         ICall call = getHttpScheduler().newCall(request);
 
-        Object object = getHttpScheduler().execute(call);
-        return object;
+        return getHttpScheduler().execute(call);
     }
 }
