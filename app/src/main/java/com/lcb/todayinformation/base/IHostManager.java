@@ -1,6 +1,6 @@
 package com.lcb.todayinformation.base;
 
-import com.lcb.http.request.IHost;
+import com.lcb.http.request.host.IHost;
 
 /**
  * Created by ${lichangbin} on 2019/11/1.

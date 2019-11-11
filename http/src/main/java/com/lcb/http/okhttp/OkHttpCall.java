@@ -1,9 +1,8 @@
 package com.lcb.http.okhttp;
 
-import com.lcb.http.IRequest;
+import com.lcb.http.request.IRequest;
 import com.lcb.http.request.call.ICall;
 import com.lcb.http.response.IResponse;
-import com.lcb.http.result.IResult;
 
 import java.io.IOException;
 
@@ -33,7 +32,7 @@ public class OkHttpCall implements ICall {
             e.printStackTrace();
         }
         OkHttpResponse okHttpResponse = new OkHttpResponse(response);
-        return response;
+        return okHttpResponse;
     }
 
     @Override

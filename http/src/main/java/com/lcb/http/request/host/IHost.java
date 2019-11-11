@@ -1,4 +1,4 @@
-package com.lcb.http.request;
+package com.lcb.http.request.host;
 
 /**
  * Created by ${lichangbin} on 2019/11/1.

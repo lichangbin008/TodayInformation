@@ -12,24 +12,20 @@ import java.util.concurrent.FutureTask;
  * Created by ${lichangbin} on 2019/11/4.
  */
 
-public class AsyncTaskInstance extends FutureTask {
+public class AsyncTaskInstance<Result> extends FutureTask<Result> {
 
     private final ITaskBackground iTaskBackground;
     private final ITaskCallback iTaskCallback;
 
-    public AsyncTaskInstance(final ITaskBackground iTaskBackground, ITaskCallback iTaskCallback) {
-        super(new Callable() {
+    public AsyncTaskInstance(final ITaskBackground<Result> iTaskBackground, ITaskCallback<Result> iTaskCallback) {
+        super(new Callable<Result>() {
             @Override
-            public Object call() throws Exception {
+            public Result call() throws Exception {
                 return iTaskBackground.onBackground();
             }
         });
         this.iTaskBackground = iTaskBackground;
         this.iTaskCallback = iTaskCallback;
-    }
-
-    public static AsyncTaskInstance getInstance(ITaskBackground iTaskBackground, ITaskCallback iTaskCallback) {
-        return new AsyncTaskInstance(iTaskBackground, iTaskCallback);
     }
 
     @Override
@@ -60,12 +56,16 @@ public class AsyncTaskInstance extends FutureTask {
                 ThreadUtil.postMainThread(new Runnable() {
                     @Override
                     public void run() {
-                        iTaskCallback.onSuccess(object);
+                        iTaskCallback.onComplete(object);
                     }
                 });
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static AsyncTaskInstance getInstance(ITaskBackground iTaskBackground, ITaskCallback iTaskCallback) {
+        return new AsyncTaskInstance(iTaskBackground, iTaskCallback);
     }
 }

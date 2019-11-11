@@ -1,7 +1,7 @@
-package com.lcb.http;
+package com.lcb.http.request;
 
 import com.lcb.http.parser.IParser;
-import com.lcb.http.request.IHost;
+import com.lcb.http.request.host.IHost;
 
 import java.lang.reflect.Type;
 import java.util.Map;

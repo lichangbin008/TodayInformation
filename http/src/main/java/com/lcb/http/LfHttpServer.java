@@ -1,5 +1,6 @@
 package com.lcb.http;
 
+import com.lcb.http.request.IRequest;
 import com.lcb.http.result.IResult;
 
 import java.util.Map;

@@ -1,5 +1,7 @@
 package com.lcb.todayinformation.base;
 
+import android.util.Log;
+
 import com.mvp.mvp.IMvpView;
 import com.mvp.mvp.base.BaseMvpPresenter;
 import com.task.LfTask;
@@ -17,6 +19,7 @@ public abstract class BasePresenter<T extends IMvpView> extends BaseMvpPresenter
     }
 
     public void submitTask(LfTask task) {
+        Log.e("BasePresenter","submitTask");
         TaskHelper.submitTask(task, task);
     }
 }

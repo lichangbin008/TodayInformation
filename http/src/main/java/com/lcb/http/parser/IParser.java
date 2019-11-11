@@ -1,6 +1,6 @@
 package com.lcb.http.parser;
 
-import com.lcb.http.IRequest;
+import com.lcb.http.request.IRequest;
 import com.lcb.http.response.IResponse;
 import com.lcb.http.result.IResult;
 

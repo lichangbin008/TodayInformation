@@ -1,7 +1,7 @@
 package com.lcb.http;
 
 import com.lcb.http.okhttp.OkHttpScheduler;
-import com.lcb.http.request.HttpScheduler;
+import com.lcb.http.request.IRequest;
 import com.lcb.http.request.call.ICall;
 import com.lcb.http.result.IResult;
 
@@ -17,7 +17,7 @@ public class HttpHelper {
 
     public static HttpScheduler getHttpScheduler() {
         if (httpScheduler == null) {
-            synchronized (HttpScheduler.class) {
+            synchronized (HttpHelper.class) {
                 if (httpScheduler == null) {
                     httpScheduler = new OkHttpScheduler();
                 }

@@ -1,8 +1,8 @@
 package com.lcb.http.request;
 
-import com.lcb.http.IRequest;
-import com.lcb.http.annotation.RequestMothod;
+import com.lcb.http.annotation.RequestMethod;
 import com.lcb.http.parser.IParser;
+import com.lcb.http.request.host.IHost;
 
 import java.lang.reflect.Type;
 import java.util.Map;
@@ -15,7 +15,7 @@ public class LfRequest implements IRequest {
 
     protected IHost host;
 
-    @RequestMothod
+    @RequestMethod
     protected int requestMethod;
 
     private Map<String, Object> params;

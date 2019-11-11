@@ -1,10 +1,9 @@
 package com.lcb.http.okhttp;
 
-import com.lcb.http.IRequest;
-import com.lcb.http.annotation.RequestMothod;
-import com.lcb.http.request.HttpScheduler;
+import com.lcb.http.request.IRequest;
+import com.lcb.http.annotation.RequestMethod;
+import com.lcb.http.HttpScheduler;
 import com.lcb.http.request.call.ICall;
-import com.lcb.http.result.IResult;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -28,7 +27,7 @@ public class OkHttpScheduler extends HttpScheduler {
         int requsetMethod = request.getRequestMethod();
         Request.Builder requestBuilder = new Request.Builder();
         switch (requsetMethod) {
-            case RequestMothod.Get:
+            case RequestMethod.Get:
                 // 拼接Get请求的url host+path
                 StringBuilder sbUrl = new StringBuilder(request.getHost().getHost());
                 sbUrl.append(request.getPath());
@@ -44,7 +43,7 @@ public class OkHttpScheduler extends HttpScheduler {
                 }
                 requestBuilder.get().url(httpUrlBuilder.build());
                 break;
-            case RequestMothod.Post:
+            case RequestMethod.Post:
                 break;
         }
         Request okHttpRequest = requestBuilder.build();
