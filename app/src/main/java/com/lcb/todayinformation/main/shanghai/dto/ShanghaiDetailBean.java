@@ -15,7 +15,7 @@ public class ShanghaiDetailBean {
     public XiaoHuaListBean result;
 
     public static class XiaoHuaListBean{
-        ArrayList<XiaoHuaBean> data;
+        public ArrayList<XiaoHuaBean> data;
     }
 
     public static class XiaoHuaBean{

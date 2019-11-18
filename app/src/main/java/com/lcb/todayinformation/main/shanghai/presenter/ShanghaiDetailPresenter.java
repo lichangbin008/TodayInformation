@@ -33,7 +33,7 @@ public class ShanghaiDetailPresenter extends BasePresenter<IShanghaiDetailContra
     }
 
     @Override
-    public void getNetData() {
+    public void getNetData(final int pageSize) {
         // 1.数据的结果解析怎么来做
         // 2.相同任务的去重工作
 //        submitTask(new LfTask() {
@@ -74,17 +74,17 @@ public class ShanghaiDetailPresenter extends BasePresenter<IShanghaiDetailContra
 
             @Override
             public IResult<ShanghaiDetailBean> onBackground() {
-                return new ShanghaiDetailHttpTask<ShanghaiDetailBean>().getXiaoHuaList("desc", "1", "1");
+                return new ShanghaiDetailHttpTask<ShanghaiDetailBean>().getXiaoHuaList("desc", "1", pageSize + "");
             }
 
             @Override
             public void onSuccess(IResult<ShanghaiDetailBean> t) {
                 Log.e("onSuccess", "onSuccess");
                 ShanghaiDetailBean data = t.data();
-//                Log.e("onSuccess", data.error_code + data.reason);
-                Gson gson = new Gson();
-                String s = gson.toJson(data);
-                Log.e("onSuccess", s);
+//                Gson gson = new Gson();
+//                String s = gson.toJson(data);
+//                Log.e("onSuccess", s);
+                getView().showData(data);
             }
         });
     }

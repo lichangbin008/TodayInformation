@@ -42,7 +42,7 @@ public class ShanghaiAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // 创建View，然后进行缓存
         if (viewType == ShanghaiBean.IShanghaiItemType.VERTICAL) {
-            if (isHor){
+            if (isHor) {
                 Log.e("onCreateViewHolder", "viewType VERTICAL");
             }
             View view = LayoutInflater.from(parent.getContext()).inflate(
@@ -100,7 +100,7 @@ public class ShanghaiAdapter extends RecyclerView.Adapter {
                 public void onClick(View v) {
 //                    int position = (int) v.getTag();
 //                    Toast.makeText(context, "我被点击" + position, Toast.LENGTH_SHORT).show();
-                    ShanghaiDetailActivity.start_5_0(context,ivShanghai);
+                    ShanghaiDetailActivity.start_5_0(context, ivShanghai);
                 }
             });
         }

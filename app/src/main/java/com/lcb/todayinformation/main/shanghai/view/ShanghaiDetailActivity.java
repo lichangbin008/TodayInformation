@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import com.lcb.todayinformation.R;
 import com.lcb.todayinformation.base.BaseActivity;
 import com.lcb.todayinformation.base.ViewInject;
+import com.lcb.todayinformation.main.shanghai.dto.ShanghaiDetailBean;
 import com.lcb.todayinformation.main.shanghai.lf.IShanghaiDetailContract;
 import com.lcb.todayinformation.main.shanghai.manager.GetXiaoHuaTask;
 import com.lcb.todayinformation.main.shanghai.module.ShanghaiDetailHttpTask;
@@ -81,7 +82,7 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
         ivShanghaiDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.getNetData();
+                presenter.getNetData(1);
             }
         });
 
@@ -141,6 +142,11 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
                     ActivityOptionsCompat.makeSceneTransitionAnimation(activity, pair);
             ActivityCompat.startActivity(activity, intent, activityOptionsCompat.toBundle());
         }
+
+    }
+
+    @Override
+    public void showData(ShanghaiDetailBean data) {
 
     }
 }
