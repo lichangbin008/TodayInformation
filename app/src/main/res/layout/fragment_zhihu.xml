@@ -30,4 +30,12 @@
 
     </android.support.v7.widget.RecyclerView>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:text="我是底部"
+        app:layout_behavior="@string/bottom_show_behavior"/>
+
 </android.support.design.widget.CoordinatorLayout>
