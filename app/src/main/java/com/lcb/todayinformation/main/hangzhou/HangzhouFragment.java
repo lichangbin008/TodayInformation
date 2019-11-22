@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import com.lcb.todayinformation.R;
 import com.lcb.todayinformation.base.BaseFragment;
 import com.lcb.todayinformation.base.ViewInject;
+import com.lcb.todayinformation.main.hangzhou.adapter.HangzhouAdapter;
 import com.lcb.todayinformation.main.hangzhou.view.ZhiHuFragment;
 import com.lcb.todayinformation.main.shanghai.lf.IShanghaiDetailContract;
 import com.lcb.todayinformation.main.shanghai.presenter.ShanghaiDetailPresenter;
@@ -29,21 +30,6 @@ public class HangzhouFragment extends BaseFragment{
     @Override
     public void afterBindView() {
         tlTablayout.setupWithViewPager(vpViewpager);
-        vpViewpager.setAdapter(new FragmentStatePagerAdapter(getChildFragmentManager()) {
-            @Override
-            public Fragment getItem(int position) {
-                return new ZhiHuFragment();
-            }
-
-            @Override
-            public int getCount() {
-                return 1;
-            }
-
-            @Override
-            public CharSequence getPageTitle(int position) {
-                return "知乎";
-            }
-        });
+        vpViewpager.setAdapter(new HangzhouAdapter(getChildFragmentManager()));
     }
 }
