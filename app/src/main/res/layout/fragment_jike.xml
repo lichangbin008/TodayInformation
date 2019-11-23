@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.lcb.todayinformation.main.hangzhou.jike.JikeClickView
-        app:is_like="false"
+    <com.lcb.todayinformation.main.hangzhou.jike.LikeClickView
+        app:is_like="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 

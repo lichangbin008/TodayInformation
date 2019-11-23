@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--name为声明的属性集合，可以随意取，最好是和自定义View一样的名称，这样便于管理-->
-    <declare-styleable name="JikeClickView">
+    <declare-styleable name="JiKeLikeView">
         <attr name="is_like" format="boolean"/>
     </declare-styleable>
 </resources>
