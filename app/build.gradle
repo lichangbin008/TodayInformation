@@ -36,6 +36,9 @@ dependencies {
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
     compile 'com.android.support:design:26.+'
 
+    //lottie
+    compile 'com.airbnb.android:lottie:2.2.5'
+
     // module的引入依赖
     compile project(':mvp')
     compile project(':http')

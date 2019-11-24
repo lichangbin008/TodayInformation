@@ -5,12 +5,15 @@ import android.support.annotation.IdRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.lcb.todayinformation.R;
 import com.lcb.todayinformation.base.BaseActivity;
 import com.lcb.todayinformation.base.ViewInject;
@@ -26,11 +29,11 @@ public class MainActivity extends BaseActivity implements IMainActivityContract.
     @BindView(R.id.fac_main_home)
     FloatingActionButton facMainHome;
     @BindView(R.id.rb_main_shanghai)
-    RadioButton rbMainShanghai;
+    LottieAnimationView rbMainShanghai;
     @BindView(R.id.rb_main_hangzhou)
-    RadioButton rbMainHangzhou;
+    LottieAnimationView rbMainHangzhou;
     @BindView(R.id.rg_main_top)
-    RadioGroup rgMainTop;
+    LinearLayout rgMainTop;
     @BindView(R.id.fl_main_bottom)
     FrameLayout flMainBottom;
     @BindView(R.id.rb_main_beijing)
@@ -55,23 +58,47 @@ public class MainActivity extends BaseActivity implements IMainActivityContract.
      * 初始化监听事件
      */
     private void initListener() {
-        rbMainShanghai.setChecked(true);
-        rgMainTop.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        rbMainShanghai.playAnimation();
+        rbMainShanghai.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                if (checkedId == mainPresenter.getCurrentCheckId()) {
+            public void onClick(View v) {
+                if (rbMainShanghai.getId() == mainPresenter.getCurrentCheckId()) {
                     return;
                 }
-                switch (checkedId) {
-                    case R.id.rb_main_shanghai:
-                        mainPresenter.replaceFragment(MainConstantTool.SHANHAI);
-                        break;
-                    case R.id.rb_main_hangzhou:
-                        mainPresenter.replaceFragment(MainConstantTool.HANGZHOU);
-                        break;
-                }
+                rbMainShanghai.playAnimation();
+                rbMainHangzhou.reverseAnimation();
+                mainPresenter.replaceFragment(MainConstantTool.SHANHAI);
             }
         });
+
+        rbMainHangzhou.playAnimation();
+        rbMainHangzhou.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (rbMainHangzhou.getId() == mainPresenter.getCurrentCheckId()) {
+                    return;
+                }
+                rbMainHangzhou.playAnimation();
+                rbMainShanghai.reverseAnimation();
+                mainPresenter.replaceFragment(MainConstantTool.HANGZHOU);
+            }
+        });
+//        rgMainTop.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+//                if (checkedId == mainPresenter.getCurrentCheckId()) {
+//                    return;
+//                }
+//                switch (checkedId) {
+//                    case R.id.rb_main_shanghai:
+//                        mainPresenter.replaceFragment(MainConstantTool.SHANHAI);
+//                        break;
+//                    case R.id.rb_main_hangzhou:
+//                        mainPresenter.replaceFragment(MainConstantTool.HANGZHOU);
+//                        break;
+//                }
+//            }
+//        });
 
         rgMainBottom.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -96,6 +123,8 @@ public class MainActivity extends BaseActivity implements IMainActivityContract.
      */
     private void initHomeFragment() {
         mainPresenter.initHomeFragment();
+        rbMainShanghai.playAnimation();
+        rbMainHangzhou.reverseAnimation();
     }
 
 
@@ -121,10 +150,10 @@ public class MainActivity extends BaseActivity implements IMainActivityContract.
     private void handleBottomPosition() {
         if (mainPresenter.getTopPosition() != MainConstantTool.HANGZHOU) { // 当前位置不是杭州
             mainPresenter.replaceFragment(MainConstantTool.SHANHAI);
-            rbMainShanghai.setChecked(true);
+            rbMainShanghai.playAnimation();
         } else { // 当前位置不是上海
             mainPresenter.replaceFragment(MainConstantTool.HANGZHOU);
-            rbMainHangzhou.setChecked(true);
+            rbMainHangzhou.playAnimation();
         }
     }
 
@@ -141,7 +170,7 @@ public class MainActivity extends BaseActivity implements IMainActivityContract.
         }
     }
 
-    private void channgeAnime(RadioGroup gone, RadioGroup show) {
+    private void channgeAnime(ViewGroup gone, ViewGroup show) {
         // 消失动画
         gone.clearAnimation(); // 清除动画
         Animation animationGone = AnimationUtils.loadAnimation(this, R.anim.main_tab_translate_hide);
