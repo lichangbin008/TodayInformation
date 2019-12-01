@@ -1,17 +1,17 @@
-apply plugin: 'com.android.application'
-//apply plugin: 'android-apt'
-apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion Integer.valueOf(compile_sdk_version)
     buildToolsVersion build_tools_version
+
     defaultConfig {
-        applicationId "com.lcb.todayinformation"
         minSdkVersion Integer.valueOf(min_sdk_version)
         targetSdkVersion Integer.valueOf(target_sdk_version)
         versionCode Integer.valueOf(version_code)
         versionName version_name
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
     buildTypes {
         release {
@@ -22,26 +22,10 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile("com.android.support.test.espresso:espresso-core:$test_version", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    // butterknife
-    //    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
-    //    compile 'com.android.support:appcompat-v7:26.+'
     compile "$support_group:appcompat-v7:$support_version"
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.jakewharton:butterknife:8.4.0'
     testCompile 'junit:junit:4.12'
-    apt 'com.jakewharton:butterknife-compiler:8.4.0'
-    compile 'com.android.support:design:26.+'
-
-    //lottie
-    compile 'com.airbnb.android:lottie:2.2.5'
-
-    // module的引入依赖
-    compile project(':mvp')
-    compile project(':http')
-    compile project(':task')
-    compile project(':refresh')
 }

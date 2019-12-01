@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.lcb.todayinformation.main.hangzhou.view.JikeFragment;
+import com.lcb.todayinformation.main.hangzhou.view.RefreshFragment;
 import com.lcb.todayinformation.main.hangzhou.view.ZhiHuFragment;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class HangzhouAdapter extends FragmentStatePagerAdapter {
         super(fm);
         list.add("知乎");
         list.add("即刻");
+        list.add("下拉刷新");
     }
 
     @Override
@@ -30,6 +32,8 @@ public class HangzhouAdapter extends FragmentStatePagerAdapter {
                 return new ZhiHuFragment();
             case 1:
                 return new JikeFragment();
+            case 2:
+                return new RefreshFragment();
             default:
                 return null;
         }
