@@ -28,4 +28,5 @@ dependencies {
     })
     compile "$support_group:appcompat-v7:$support_version"
     testCompile 'junit:junit:4.12'
+    compile "$support_group:recyclerview-v7:$support_version"
 }

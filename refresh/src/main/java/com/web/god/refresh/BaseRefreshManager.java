@@ -25,4 +25,6 @@ public abstract class BaseRefreshManager {
     public abstract void iddle();
 
     public abstract void refreshing();
+
+    public abstract void downRefreshPercent(float percent);
 }

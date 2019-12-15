@@ -43,4 +43,9 @@ public class DefaultRefreshManager extends BaseRefreshManager {
     public void refreshing() {
         tvRefresh.setText("正在刷新");
     }
+
+    @Override
+    public void downRefreshPercent(float percent) {
+
+    }
 }
