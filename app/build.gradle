@@ -45,9 +45,12 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     implementation 'com.jakewharton:butterknife:9.0.0-rc2'
     annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc2'
-
     //lottie
     implementation 'com.airbnb.android:lottie:2.2.5'
+
+    //apt
+    implementation project(':annotation')
+    annotationProcessor project(':apt')
 
     // module的引入依赖
     implementation project(':mvp')
