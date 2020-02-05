@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.ViewStub;
 import android.widget.TextView;
 
 import com.lcb.todayinformation.R;
@@ -21,6 +24,8 @@ public class SplashActivity extends BaseActivity implements ISplashActivityContr
 
     @BindView(R.id.vv_splash_player)
     SplashVideoView vvSplashPlayer;
+//    @BindView(R.id.splash_vs)
+//    ViewStub mViewStub;
     @BindView(R.id.tv_count_down)
     TextView tvCountDown;
 
@@ -87,6 +92,17 @@ public class SplashActivity extends BaseActivity implements ISplashActivityContr
 
     @Override
     public void setTvTimer(String timer) {
+//        if (TextUtils.equals(timer, "跳过")){
+//            View inflate = mViewStub.inflate();
+//            inflate.setVisibility(View.VISIBLE);
+//            inflate.findViewById(R.id.tv_count_down).setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+//                    finish();
+//                }
+//            });
+//        }
         tvCountDown.setText(timer);
     }
 }
