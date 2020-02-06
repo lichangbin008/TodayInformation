@@ -41,6 +41,8 @@ dependencies {
     //    compile 'com.android.support:appcompat-v7:26.+'
     implementation "$support_group:appcompat-v7:$support_version"
     implementation "$support_group:design:$support_version"
+    implementation "$support_group:cardview-v7:$support_version"
+//    implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
     implementation 'com.jakewharton:butterknife:9.0.0-rc2'
@@ -57,6 +59,7 @@ dependencies {
     implementation project(':http')
     implementation project(':task')
     implementation project(':refresh')
+
 //    implementation 'com.github.lichangbin008:GodRefreshLayout:V1.0.0'
 //    implementation 'com.github.xinyangcuncun:GodRefreshLayout:V1.0.0'
 }
