@@ -16,6 +16,8 @@ import com.lcb.todayinformation.base.BaseFragment;
 import com.lcb.todayinformation.base.ViewInject;
 import com.lcb.todayinformation.base.tools.DoubleClickListener;
 import com.lcb.todayinformation.main.shanghai.adapter.ShanghaiAdapter2;
+import com.lcb.todayinformation.main.shanghai.lf.IPlayerServiceContract;
+import com.lcb.todayinformation.main.shanghai.presenter.PlayerServicePresenter;
 
 import butterknife.BindView;
 
@@ -24,7 +26,9 @@ import butterknife.BindView;
  */
 
 @ViewInject(mainlayoutid = R.layout.fragment_shanghai)
-public class ShanghaiFragment extends BaseFragment {
+public class ShanghaiFragment extends BaseFragment implements IPlayerServiceContract.IView{
+
+    IPlayerServiceContract.IPresenter mPresenter = new PlayerServicePresenter(this);
 
     @BindView(R.id.tv_shanghai_welcome)
     TextView tvShanghaiWelcome;
@@ -85,6 +89,7 @@ public class ShanghaiFragment extends BaseFragment {
                             tvShanghaiWelcome.getTranslationX() + 150, null);
                     AnimationUtil.startTranslationXAnim(tvMarqueeTitle, tvMarqueeTitle.getTranslationX(),
                             tvMarqueeTitle.getTranslationX() + 150, null);
+                    mPresenter.playOrPaused();
                 } else {
                     // 播放音视频动画
                     AnimationUtil.startTranslationXAnim(tvShanghaiWelcome, tvShanghaiWelcome.getTranslationX(),
@@ -94,6 +99,8 @@ public class ShanghaiFragment extends BaseFragment {
                                 @Override
                                 public void onAnimationEnd(Animator animation) {
                                     tvMarqueeTitle.setVisibility(View.VISIBLE);
+                                    // 启动Service播放后台音乐
+                                    mPresenter.bindService(context);
                                 }
                             });
                 }
