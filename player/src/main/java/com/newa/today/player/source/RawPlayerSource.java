@@ -8,6 +8,7 @@ import java.io.File;
 public class RawPlayerSource implements IPlayerSource {
 
     private String url;
+    private int resId;
 
     //"android.resource://" + getPackageName() + File.separator + R.raw.splash
 
@@ -16,13 +17,24 @@ public class RawPlayerSource implements IPlayerSource {
         this.url = url;
     }
 
-    public IPlayerSource setPath(String packageName,int rawId){
+    public IPlayerSource setPath(String packageName, int rawId) {
         setUrl("android.resource://" + packageName + File.separator + rawId);
+        setResId(rawId);
         return this;
     }
 
     @Override
     public String getUrl() {
         return url;
+    }
+
+    @Override
+    public int getResId() {
+        return resId;
+    }
+
+    @Override
+    public void setResId(int resId) {
+        this.resId = resId;
     }
 }

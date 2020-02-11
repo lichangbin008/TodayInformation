@@ -22,6 +22,9 @@ public class PlayerFactory {
         switch (playerType){
             case IPlayerType.MEDIAPLAYERTYPE:
                 return new GoogleMediaPlayer();
+
+            case IPlayerType.MEDIAPLAYERTYPE_2:
+                return new ExoMediaPlayer(context);
         }
         return null;
     }
