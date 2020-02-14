@@ -11,11 +11,4 @@
         android:scaleType="centerCrop"
         android:src="@mipmap/shanghai"/>
 
-    <TextView
-        android:id="@+id/tv_crash"
-        android:gravity="center"
-        android:text="子线程崩溃"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"/>
-
 </LinearLayout>

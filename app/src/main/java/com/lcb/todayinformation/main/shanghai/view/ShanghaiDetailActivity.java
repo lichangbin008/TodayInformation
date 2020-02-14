@@ -2,6 +2,7 @@ package com.lcb.todayinformation.main.shanghai.view;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.opengl.GLSurfaceView;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -23,6 +24,9 @@ import com.lcb.todayinformation.main.shanghai.presenter.ShanghaiDetailPresenter;
 
 
 import java.io.IOException;
+
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.opengles.GL10;
 
 import butterknife.BindView;
 import okhttp3.Call;
@@ -46,9 +50,6 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
 
     @BindView(R.id.iv_shanghai_detail)
     ImageView ivShanghaiDetail;
-    @BindView(R.id.tv_crash)
-    TextView tvCrash;
-
 
     @Override
     public void afterBindView() {
@@ -60,19 +61,6 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
             public void onClick(View v) {
                 String s = null;
                 s.toString();
-            }
-        });
-
-        tvCrash.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        String s = null;
-                        s.toString();
-                    }
-                }).start();
             }
         });
     }
