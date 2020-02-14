@@ -22,7 +22,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".main.MainActivity"></activity>
-        <activity android:name=".main.shanghai.view.ShanghaiDetailActivity"></activity>
+        <activity
+            android:process=":shanghai.detail"
+            android:name=".main.shanghai.view.ShanghaiDetailActivity"></activity>
 
         <!--播放器配置信息-->
         <meta-data

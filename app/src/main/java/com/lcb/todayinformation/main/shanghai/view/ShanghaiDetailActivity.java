@@ -1,7 +1,10 @@
 package com.lcb.todayinformation.main.shanghai.view;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.opengl.GLSurfaceView;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
@@ -42,7 +45,7 @@ import okhttp3.Response;
  */
 
 @ViewInject(mainlayoutid = R.layout.activity_shanghai_detail)
-public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDetailContract.IView{
+public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDetailContract.IView {
 
     IShanghaiDetailContract.IPresenter presenter = new ShanghaiDetailPresenter(this);
 
@@ -50,19 +53,22 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
 
     @BindView(R.id.iv_shanghai_detail)
     ImageView ivShanghaiDetail;
+    private GetProcessReceiver getProcessReceiver;
 
     @Override
     public void afterBindView() {
+        initReceiver();
+        initProcessData();
         initAnima();
         initGetNetData();
 //        initPostNetData();
-        ivShanghaiDetail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String s = null;
-                s.toString();
-            }
-        });
+//        ivShanghaiDetail.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String s = null;
+//                s.toString();
+//            }
+//        });
     }
 
     /**
@@ -160,5 +166,30 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
     @Override
     public void showData(ShanghaiDetailBean data) {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(getProcessReceiver);
+}
+
+    private void initReceiver() {
+        getProcessReceiver = new GetProcessReceiver();
+        registerReceiver(getProcessReceiver, new IntentFilter("beijing_post_process_data"));
+    }
+
+        private void initProcessData() {
+        Intent intent = new Intent("shanghai_get_process_data");
+        sendBroadcast(intent);
+    }
+
+    private class GetProcessReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String processDec = intent.getStringExtra("processDec");
+            Log.e(activityOptionsCompat, "processDec = " + processDec);
+        }
     }
 }
