@@ -29,6 +29,7 @@ public class BeijingFragment extends BaseFragment {
 
     @Override
     public void afterBindView() {
+        context.startService(new Intent(context, MainProcessService.class));
         tvClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,6 +48,7 @@ public class BeijingFragment extends BaseFragment {
     public void onDestroy() {
         super.onDestroy();
 //        getActivity().unregisterReceiver(processDataReceiver);
+        context.stopService(new Intent(context, MainProcessService.class));
     }
 
 //    private class ProcessDataReceiver extends BroadcastReceiver {

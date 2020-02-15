@@ -1,14 +1,23 @@
 package com.lcb.todayinformation.main.shanghai.view;
 
 import android.app.Activity;
+import android.app.Service;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.net.Uri;
 import android.opengl.GLSurfaceView;
 import android.os.Build;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.IBinder;
+import android.os.Message;
+import android.os.Messenger;
+import android.os.RemoteException;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
@@ -21,6 +30,7 @@ import android.widget.TextView;
 import com.lcb.todayinformation.R;
 import com.lcb.todayinformation.base.BaseActivity;
 import com.lcb.todayinformation.base.ViewInject;
+import com.lcb.todayinformation.main.beijing.MainProcessService;
 import com.lcb.todayinformation.main.shanghai.dto.ShanghaiDetailBean;
 import com.lcb.todayinformation.main.shanghai.lf.IShanghaiDetailContract;
 import com.lcb.todayinformation.main.shanghai.manager.GetXiaoHuaTask;
@@ -57,13 +67,47 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
     ImageView ivShanghaiDetail;
 //    private GetProcessReceiver getProcessReceiver;
 
+    private Messenger messenger;
+
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            Bundle data = msg.getData();
+            Log.e(activityOptionsCompat, "processDec = " + data.getString("process"));
+        }
+    };
+
+    private Messenger messengerClient = new Messenger(handler);
+
+    private ServiceConnection connection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            messenger = new Messenger(service);
+            Message msg = new Message();
+            msg.what = MainProcessService.SHANGHAI_DETAIL;
+            msg.replyTo = messengerClient;
+            try {
+                messenger.send(msg);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
+    };
+
     @Override
     public void afterBindView() {
 //        initReceiver();
 //        initProcessData();
         initAnima();
         initGetNetData();
-        initProviderData();
+        initProcessService();
+//        initProviderData();
 //        initPostNetData();
 //        ivShanghaiDetail.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -74,11 +118,17 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
 //        });
     }
 
-    private void initProviderData() {
-        Uri insert = getContentResolver().insert(
-                Uri.parse("content://com.news.today.process.data"), new ContentValues());
-        Log.e(activityOptionsCompat, "processDec = " + insert.toString());
+    private void initProcessService() {
+        Intent intent = new Intent(this, MainProcessService.class);
+        bindService(intent, connection, Service.BIND_AUTO_CREATE);
     }
+
+
+//    private void initProviderData() {
+//        Uri insert = getContentResolver().insert(
+//                Uri.parse("content://com.news.today.process.data"), new ContentValues());
+//        Log.e(activityOptionsCompat, "processDec = " + insert.toString());
+//    }
 
     /**
      * 发送网络请求Post
