@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.lcb.todayinformation">
+          package="com.lcb.todayinformation">
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
@@ -16,20 +16,24 @@
             android:name=".splash.SplashActivity"
             android:theme="@style/FullScreen">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity android:name=".main.MainActivity"></activity>
         <activity
-            android:process=":shanghai.detail"
-            android:name=".main.shanghai.view.ShanghaiDetailActivity"></activity>
+            android:name=".main.shanghai.view.ShanghaiDetailActivity"
+            android:process=":shanghai.detail"></activity>
+
+        <provider
+            android:name=".main.beijing.MainProcessDataProvider"
+            android:authorities="com.news.today.process.data"/>
 
         <!--播放器配置信息-->
         <meta-data
             android:name="playertype"
-            android:value="2" />
+            android:value="2"/>
     </application>
 
 </manifest>

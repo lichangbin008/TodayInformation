@@ -2,9 +2,11 @@ package com.lcb.todayinformation.main.shanghai.view;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.opengl.GLSurfaceView;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
@@ -53,14 +55,15 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
 
     @BindView(R.id.iv_shanghai_detail)
     ImageView ivShanghaiDetail;
-    private GetProcessReceiver getProcessReceiver;
+//    private GetProcessReceiver getProcessReceiver;
 
     @Override
     public void afterBindView() {
-        initReceiver();
-        initProcessData();
+//        initReceiver();
+//        initProcessData();
         initAnima();
         initGetNetData();
+        initProviderData();
 //        initPostNetData();
 //        ivShanghaiDetail.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -69,6 +72,12 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
 //                s.toString();
 //            }
 //        });
+    }
+
+    private void initProviderData() {
+        Uri insert = getContentResolver().insert(
+                Uri.parse("content://com.news.today.process.data"), new ContentValues());
+        Log.e(activityOptionsCompat, "processDec = " + insert.toString());
     }
 
     /**
@@ -171,25 +180,25 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(getProcessReceiver);
-}
-
-    private void initReceiver() {
-        getProcessReceiver = new GetProcessReceiver();
-        registerReceiver(getProcessReceiver, new IntentFilter("beijing_post_process_data"));
+//        unregisterReceiver(getProcessReceiver);
     }
 
-        private void initProcessData() {
-        Intent intent = new Intent("shanghai_get_process_data");
-        sendBroadcast(intent);
-    }
+//    private void initReceiver() {
+//        getProcessReceiver = new GetProcessReceiver();
+//        registerReceiver(getProcessReceiver, new IntentFilter("beijing_post_process_data"));
+//    }
 
-    private class GetProcessReceiver extends BroadcastReceiver {
+//    private void initProcessData() {
+//        Intent intent = new Intent("shanghai_get_process_data");
+//        sendBroadcast(intent);
+//    }
 
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String processDec = intent.getStringExtra("processDec");
-            Log.e(activityOptionsCompat, "processDec = " + processDec);
-        }
-    }
+//    private class GetProcessReceiver extends BroadcastReceiver {
+//
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//            String processDec = intent.getStringExtra("processDec");
+//            Log.e(activityOptionsCompat, "processDec = " + processDec);
+//        }
+//    }
 }
