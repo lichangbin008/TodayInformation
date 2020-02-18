@@ -2,15 +2,9 @@ package com.lcb.todayinformation.main.shanghai.view;
 
 import android.app.Activity;
 import android.app.Service;
-import android.content.BroadcastReceiver;
 import android.content.ComponentName;
-import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.ServiceConnection;
-import android.net.Uri;
-import android.opengl.GLSurfaceView;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,11 +15,9 @@ import android.os.RemoteException;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
-import android.support.v4.view.ViewCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.lcb.todayinformation.R;
 import com.lcb.todayinformation.base.BaseActivity;
@@ -33,21 +25,19 @@ import com.lcb.todayinformation.base.ViewInject;
 import com.lcb.todayinformation.main.beijing.MainProcessService;
 import com.lcb.todayinformation.main.shanghai.dto.ShanghaiDetailBean;
 import com.lcb.todayinformation.main.shanghai.lf.IShanghaiDetailContract;
-import com.lcb.todayinformation.main.shanghai.manager.GetXiaoHuaTask;
-import com.lcb.todayinformation.main.shanghai.module.ShanghaiDetailHttpTask;
 import com.lcb.todayinformation.main.shanghai.presenter.ShanghaiDetailPresenter;
+import com.web.god.ipc.ICallback;
+import com.web.god.ipc.result.IResult;
+import com.web.god.ipc.IpcManager;
+import com.web.god.ipc.request.IpcRequest;
 
 
 import java.io.IOException;
-
-import javax.microedition.khronos.egl.EGLConfig;
-import javax.microedition.khronos.opengles.GL10;
 
 import butterknife.BindView;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
-import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -106,7 +96,8 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
 //        initProcessData();
         initAnima();
         initGetNetData();
-        initProcessService();
+        initIpc();
+//        initProcessService();
 //        initProviderData();
 //        initPostNetData();
 //        ivShanghaiDetail.setOnClickListener(new View.OnClickListener() {
@@ -116,6 +107,18 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
 //                s.toString();
 //            }
 //        });
+    }
+
+    private void initIpc() {
+        Log.e("activityOptionsCompat", "initIpc");
+        IpcRequest ipcRequest = new IpcRequest("shanghai_detail");
+        IpcManager.getInstance(this).excuteAsync(ipcRequest, new ICallback() {
+            @Override
+            public void callback(IResult result) {
+                String data = result.data();
+                Log.e("activityOptionsCompat", data);
+            }
+        });
     }
 
     private void initProcessService() {

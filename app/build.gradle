@@ -60,6 +60,7 @@ dependencies {
     implementation project(':task')
     implementation project(':refresh')
     implementation project(':player')
+    implementation project(':ipc')
 //    implementation 'com.github.lichangbin008:GodRefreshLayout:V1.0.0'
 //    implementation 'com.github.xinyangcuncun:GodRefreshLayout:V1.0.0'
 }
