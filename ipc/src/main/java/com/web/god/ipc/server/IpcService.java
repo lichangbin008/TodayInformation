@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 
 import com.web.god.ipc.IClientInterface;
 import com.web.god.ipc.IServerInterface;
+import com.web.god.ipc.response.ResponseUtil;
 
 /**
  * Created by ${lichangbin} on 2020/2/16.
@@ -22,15 +23,16 @@ public class IpcService extends Service {
 
             @Override
             public void excuteAsync(String requestKey, String requestParmas) throws RemoteException {
-                switch (requestKey) {
-                    case "shanghai_detail":
-                        if (mClientInterface != null) {
-                            mClientInterface.callback(requestKey, "来自远方的祝福");
-                        }
-                        break;
-                    default:
-                        break;
-                }
+                ResponseUtil.getAsyncResponse(requestKey, requestParmas, mClientInterface);
+//                switch (requestKey) {
+//                    case "shanghai_detail":
+//                        if (mClientInterface != null) {
+//                            mClientInterface.callback(requestKey, "来自远方的祝福");
+//                        }
+//                        break;
+//                    default:
+//                        break;
+//                }
             }
 
             @Override

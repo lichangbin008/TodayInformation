@@ -144,6 +144,7 @@ public class IpcManager {
                     for (IRequest request : mRequests) {
                         request.getCallback().callback(IpcResult.getErrorResult());
                     }
+                    mRequests.clear();
                 }
             };
         }
@@ -157,6 +158,7 @@ public class IpcManager {
                         IRequest next = iterator.next();
                         if (TextUtils.equals(next.getRequestKey(), requestKey)) {
                             next.getCallback().callback(IpcResult.getSuccessResult(resultStr));
+                            mRequests.remove(next);
                             return;
                         }
                     }

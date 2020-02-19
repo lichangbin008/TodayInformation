@@ -111,7 +111,7 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
 
     private void initIpc() {
         Log.e("activityOptionsCompat", "initIpc");
-        IpcRequest ipcRequest = new IpcRequest("shanghai_detail");
+        IpcRequest ipcRequest = new IpcRequest("shanghaiDetail");
         IpcManager.getInstance(this).excuteAsync(ipcRequest, new ICallback() {
             @Override
             public void callback(IResult result) {
