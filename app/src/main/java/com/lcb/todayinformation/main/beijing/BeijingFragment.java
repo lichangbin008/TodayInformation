@@ -1,10 +1,15 @@
 package com.lcb.todayinformation.main.beijing;
 
+import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -22,20 +27,43 @@ import butterknife.BindView;
 @ViewInject(mainlayoutid = R.layout.fragment_beijing)
 public class BeijingFragment extends BaseFragment {
 
+    private static final String TAG = "BeijingFragment";
+
     @BindView(R.id.bt_paly)
     Button tvClick;
+    @BindView(R.id.perimision)
+    Button btClick;
 
 //    private ProcessDataReceiver processDataReceiver;
 
     @Override
     public void afterBindView() {
-        context.startService(new Intent(context, MainProcessService.class));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            context.startForegroundService(new Intent(context, MainProcessService.class));
+        } else {
+            context.startService(new Intent(context,MainProcessService.class));
+        }
         tvClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //去上海
                 ProcessDataTest.getInstance().setProcessDec("你好，我来自北京");
                 ShanghaiDetailActivity.start_5_0(getActivity(), tvClick);
+            }
+        });
+
+        btClick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    int state = getContext().checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE);
+                    if (state == PackageManager.PERMISSION_GRANTED) {
+                        Log.e("BeiJingFragment", "权限已经申请");
+                    } else {
+                        requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
+                        Log.e("BeiJingFragment", "权限没有申请");
+                    }
+                }
             }
         });
 //        processDataReceiver = new ProcessDataReceiver();
@@ -61,4 +89,11 @@ public class BeijingFragment extends BaseFragment {
 //            getActivity().sendBroadcast(postIntent);
 //        }
 //    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        Log.e(TAG, grantResults[0] + " ");
+    }
 }
